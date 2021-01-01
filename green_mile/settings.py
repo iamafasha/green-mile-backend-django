@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-AUTH_USER_MODEL = 'users.AfashaUser'
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'packages',
     'users',
+    'api',
+    'rest_framework',
+    'drf_yasg',
 ]
+
+AUTH_USER_MODEL = 'users.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

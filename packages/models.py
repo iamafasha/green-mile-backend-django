@@ -1,5 +1,6 @@
 from django.db import models    
 from django.conf import settings
+from users.models import Supplier
 
 class ShippingLocation(models.Model):
     latitude = models.IntegerField()
@@ -28,14 +29,16 @@ class PackageSize(models.Model):
 
 # Create your models here.
 class Package(models.Model):
-    name = models.CharField(max_length=30)
-    supplier = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
-    to =  models.ForeignKey(Shipping, default=None, on_delete=models.CASCADE )
-    _type = (
-        ('m', 'Hub Manager'),
-        ('M', 'Officer'),
+    TYPE = (
+        ('1', 'Envelope'),
+        ('2', 'Parcel'),
+        ('2', 'Soft'),
+        ('2', 'Freezed'),
     )
+    name = models.CharField(max_length=30)
+    supplier = models.ForeignKey( Supplier , on_delete=models.DO_NOTHING)
+    to =  models.ForeignKey(Shipping, default=None, on_delete=models.CASCADE )
     size = models.ForeignKey( PackageSize, default=None, on_delete=models.CASCADE )
-    
+    type = models.CharField(max_length=1, default="1", choices=TYPE)
     def __str__(self):
         return self.name

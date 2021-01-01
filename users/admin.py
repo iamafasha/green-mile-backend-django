@@ -1,13 +1,5 @@
 from django.contrib import admin
-from .models import AfashaUser , Supplier
+from .models import Worker , Supplier
 
-
-
-class AfashaUserAdmin(admin.ModelAdmin):
-    pass
-
-class SupplierAdmin(admin.ModelAdmin):
-    pass
-
-admin.site.register(Supplier, SupplierAdmin)
-admin.site.register(AfashaUser, AfashaUserAdmin)
+admin.site.register(Supplier)
+admin.site.register(Worker)
