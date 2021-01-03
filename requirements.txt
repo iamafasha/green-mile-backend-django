@@ -1,0 +1,5 @@
+Django
+django-rest-swagger
+djangorestframework
+drf-yasg
+PyJWT
