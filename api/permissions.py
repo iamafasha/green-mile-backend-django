@@ -1,10 +1,12 @@
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework import permissions
+from users.models import Worker
 
-class IsSupplier(BasePermission):
-    message = "Use supllier account"
+class IsWorker(permissions.BasePermission):
+    message = "Login with Supplier Account"
     
     def has_object_permission(self, request, view, obj):
-        return False
-        
-    def has_permission(self, request, view):
-        return False
+        try:
+            user = Worker.objects.get(username=request.user)
+        except Worker.DoesNotExist:
+            return False
+        return True

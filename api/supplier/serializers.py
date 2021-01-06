@@ -1,33 +1,6 @@
-from rest_framework import serializers
+from api.serializers import serializers , PackageSizeSerializer, ShippingLocationSerializer , ShippingSerializer
 from users.models import Supplier
-from packages.models import Package , PackageSize , ShippingLocation , Shipping
-
-class ShippingLocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= ShippingLocation
-        fields = ['latitude','longitude']
-
-class PackageSizeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= PackageSize
-        fields = ['length', 'width' ,'height' ,'weight']
-
-class ShippingSerializer(serializers.ModelSerializer):
-    location = ShippingLocationSerializer()
-    class Meta:
-        model = Shipping
-        fields = [
-            'first_name', 
-            'last_name',
-            'phone_number',
-            'email',
-            'street_address',
-            'village',
-            'district',
-            'country',
-            'location'
-            ]
-
+from packages.models import Package 
 
 
 class SupplierSerializer(serializers.ModelSerializer):
@@ -35,13 +8,20 @@ class SupplierSerializer(serializers.ModelSerializer):
         model = Supplier
         fields = ['username','company_name','company_domain', 'email', 'password']
 
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        user = super().create(validated_data)
+        user.set_password(password)
+        user.save()
+        return user 
+
 class SupplierPackageSerializer(serializers.ModelSerializer):
     size = PackageSizeSerializer()
     to = ShippingSerializer()
     class Meta:
         model = Package
-        fields = ['id','supplier', 'name', 'size', 'to', ]
-        read_only_fields = ['supplier']
+        fields = ['id','supplier', 'name', 'size', 'to', 'type', 'status']
+        read_only_fields = ['supplier' , 'status']
     
     def create(self, validated_data):
         user =Supplier.objects.get(username=self.context['request'].user)
