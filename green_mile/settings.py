@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 import django_heroku
 from boto.s3.connection import S3Connection
-
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +29,7 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=DEBUG = S3Connection(os.environ['DATABASE_URL'], os.environ['DATABASE_URL'])
     )
 
 }
