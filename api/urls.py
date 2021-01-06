@@ -3,6 +3,9 @@ from rest_framework import routers
 from .supplier import views as supplier_views
 from .workers import views as worker_views
 from .auth import views as auth_views
+from .hubmananger.packages import views as hub_mananager_package_views
+from .hubmananger.suppliers import views as hub_mananager_supplier_views
+from .hubmananger.workers import views as hub_mananager_worker_views
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -28,4 +31,10 @@ urlpatterns = [
     path('supplier/package', supplier_views.SupplierPackageViewSet.as_view(), name="packages-supplier" ),
     path('supplier/package/<int:id>', supplier_views.SupplierPackageDetailViewSet.as_view(), name="package-details-supplier" ),
     path('worker/package/<int:id>', worker_views.WorkerPackageDetailViewSet.as_view() , name="package-details-supplier" ),
+    path('hubmananger/packages/', hub_mananager_package_views.PackageViewSet.as_view() , name="package-details-supplier" ),
+    path('hubmananger/package/<int:id>', hub_mananager_package_views.PackageDetailViewSet.as_view() , name="package-details-supplier" ),
+    path('hubmananger/suppliers/', hub_mananager_supplier_views.SupplierViewSet.as_view() , name="package-details-supplier" ),
+    path('hubmananger/supplier/<int:id>', hub_mananager_supplier_views.SupplierDetailViewSet.as_view() , name="package-details-supplier" ),
+    path('hubmananger/workers/', hub_mananager_worker_views.WorkerViewSet.as_view() , name="package-details-supplier" ),
+    path('hubmananger/worker/<int:id>', hub_mananager_worker_views.WorkerDetailViewSet.as_view() , name="package-details-supplier" ),
 ]
