@@ -1,1 +1,1 @@
-web: gunicorn greenmile.wsgi
+web: gunicorn green_mile.wsgi
