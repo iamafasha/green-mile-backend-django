@@ -1,12 +1,28 @@
-from rest_framework import viewsets
-from rest_framework.decorators import action
-from users.models import Supplier
-from .serializers import SupplierSerializer
+from rest_framework import viewsets , generics , status 
+from users.models import Supplier 
+from packages.models import Package
+from .serializers import SupplierSerializer, SupplierPackageSerializer
+from rest_framework.permissions import IsAuthenticated
+from api.permissions import IsSupplier
 
 class SupplierViewSet(viewsets.ModelViewSet):
     queryset = Supplier.objects.all().order_by('-date_joined')
     serializer_class = SupplierSerializer
 
-    @action(detail=True, methods=['patch', 'delete'])
-    def unset_password(self, request, pk=None):
-        pass
+class SupplierPackageViewSet(generics.ListCreateAPIView):
+    serializer_class = SupplierPackageSerializer
+    queryset = Package.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Package.objects.filter(supplier=self.request.user)
+
+class SupplierPackageDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
+
+    serializer_class = SupplierPackageSerializer
+    permission_classes = (IsAuthenticated,)
+    lookup_field = "id"
+
+    def get_queryset(self):
+        return Package.objects.filter(supplier=self.request.user)
+    

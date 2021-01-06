@@ -13,10 +13,8 @@ class JWTAuthentication(authentication.BaseAuthentication):
             return None
 
         prefix, token = auth_data.decode('utf-8').split(' ')
-
         try:
-            payload = jwt.decode(token, settings.JWT_SECRET_KEY)
-
+            payload = jwt.decode(token, 'SDFSDGVSEGWEGERHEWWT634RY3Y4WG34dua2fy@28^c1^^klpj$+-3ey21aaeds669_', algorithms="HS256")
             user = User.objects.get(username=payload['username'])
             return (user, token)
 
