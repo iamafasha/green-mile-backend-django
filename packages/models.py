@@ -15,7 +15,7 @@ class Shipping (models.Model):
     village = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
     country = models.CharField(max_length=30)
-    location = models.ForeignKey(ShippingLocation , default=None, on_delete=models.CASCADE )
+    location = models.OneToOneField(ShippingLocation , default=None, on_delete=models.CASCADE )
 
     # Returns the string representation of the model.
     def __str__(self):
@@ -35,10 +35,17 @@ class Package(models.Model):
         ('2', 'Soft'),
         ('2', 'Freezed'),
     )
+    STATUS = (
+        ('1', 'CREATED IN SYSTEM'),
+        ('2', ''),
+        ('2', 'Soft'),
+        ('2', 'Freezed'),
+    )
     name = models.CharField(max_length=30)
     supplier = models.ForeignKey( Supplier , on_delete=models.DO_NOTHING)
     to =  models.ForeignKey(Shipping, default=None, on_delete=models.CASCADE )
     size = models.ForeignKey( PackageSize, default=None, on_delete=models.CASCADE )
     type = models.CharField(max_length=1, default="1", choices=TYPE)
+    
     def __str__(self):
         return self.name

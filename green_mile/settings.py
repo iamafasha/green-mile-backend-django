@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '!@$6hs&pn#*vyn)dua2fy@28^c1^^klpj$+-3ey21aaeds669_'
+JWT_SECRET_KEY = 'SDFSDGVSEGWEGERHEWWT634RY3Y4WG34dua2fy@28^c1^^klpj$+-3ey21aaeds669_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,10 +47,7 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'users.User'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
-}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,3 +129,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = Path(BASE_DIR).joinpath('static')
+
+# Rest api settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'api.auth.backends.JWTAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
