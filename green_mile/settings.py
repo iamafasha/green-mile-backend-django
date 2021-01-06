@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import django_heroku
+from boto.s3.connection import S3Connection
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-
+DEBUG = S3Connection(os.environ['DEBUG'], os.environ['DEBUG'])
+SECRET_KEY = S3Connection(os.environ['SECRET_KEY'], os.environ['SECRET_KEY'])
+JWT_SECRET_KEY = S3Connection(os.environ['JWT_SECRET_KEY'], os.environ['JWT_SECRET_KEY'])
 # SECRET_KEY = '!@$6hs&pn#*vyn)dua2fy@28^c1^^klpj$+-3ey21aaeds669_'
 # JWT_SECRET_KEY = config('JWT_SECRET_KEY')
 # DEBUG = True
