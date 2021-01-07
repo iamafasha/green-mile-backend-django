@@ -1,12 +1,5 @@
-from django.contrib.auth.admin import UserAdmin , admin
+from django.contrib.auth.admin import admin
 from .models import Worker , Supplier , User
 
-
-class WorkerAdmin(UserAdmin):
-    pass
-
-class SupplierAdmin(UserAdmin):
-    pass
-
-admin.site.register(Supplier, SupplierAdmin)
-admin.site.register(Worker, WorkerAdmin)
+admin.site.register(Supplier)
+admin.site.register(Worker)
