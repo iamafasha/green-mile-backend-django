@@ -1,4 +1,5 @@
-from pathlib import Path 
+from pathlib import Path
+from dotenv import load_dotenv
 import os
 import django_heroku
 from boto.s3.connection import S3Connection
@@ -8,14 +9,19 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+##dotenv settitings 
+
+load_dotenv(verbose=True)
+env_path = BASE_DIR / '.env'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-DEBUG = S3Connection(os.environ['DEBUG'], os.environ['DEBUG'])
-SECRET_KEY = S3Connection(os.environ['SECRET_KEY'], os.environ['SECRET_KEY'])
-JWT_SECRET_KEY = S3Connection(os.environ['JWT_SECRET_KEY'], os.environ['JWT_SECRET_KEY'])
+DEBUG = bool(os.getenv('DEBUG'))
+SECRET_KEY =  os.getenv('SECRET_KEY')
+JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
 # SECRET_KEY = '!@$6hs&pn#*vyn)dua2fy@28^c1^^klpj$+-3ey21aaeds669_'
 # JWT_SECRET_KEY = config('JWT_SECRET_KEY')
 # DEBUG = True
@@ -23,16 +29,26 @@ JWT_SECRET_KEY = S3Connection(os.environ['JWT_SECRET_KEY'], os.environ['JWT_SECR
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    'default': dj_database_url.config(
-        default = S3Connection(os.environ['DATABASE_URL'], os.environ['DATABASE_URL'])
-    )
 
-}
+print(SECRET_KEY)
+print(JWT_SECRET_KEY)
+print(DEBUG)
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+
+        'default': dj_database_url.config(
+            default = S3Connection(os.environ['DATABASE_URL'], os.environ['DATABASE_URL'])
+        )
+
+    }
 
 ALLOWED_HOSTS = []
 
