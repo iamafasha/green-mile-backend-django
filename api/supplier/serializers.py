@@ -1,6 +1,6 @@
 from api.serializers import serializers , PackageSizeSerializer, ShippingLocationSerializer , ShippingSerializer
 from users.models import Supplier
-from packages.models import Package 
+from packages.models import Package , ShippingLocation , Shipping , PackageSize
 
 
 class SupplierSerializer(serializers.ModelSerializer):

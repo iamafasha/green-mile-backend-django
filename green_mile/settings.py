@@ -29,11 +29,6 @@ JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
-print(SECRET_KEY)
-print(JWT_SECRET_KEY)
-print(DEBUG)
-
 if DEBUG:
     DATABASES = {
         'default': {
@@ -53,7 +48,7 @@ else:
 ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = [
-    "https://greenmile.netlify.app/",
+    "https://greenmile.netlify.app",
     "http://localhost:1234",
 ]
 

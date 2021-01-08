@@ -26,6 +26,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path("", schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path("auth/login", auth_views.LoginView.as_view(), name="user-login"),
+    path("auth/account_type", auth_views.AccountType.as_view(), name="user-account-type"),
     path('sandbox', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('supplier', supplier_views.SupplierViewSet.as_view({'post':'create'}), name="create-supplier" ),
     path('supplier/package', supplier_views.SupplierPackageViewSet.as_view(), name="packages-supplier" ),
