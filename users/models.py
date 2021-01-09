@@ -3,6 +3,14 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     login_count = models.PositiveIntegerField(default=0)
+    
+    @property
+    def subclass(self):
+        if hasattr(self, 'supplier'):
+            return 'Supplier'
+        elif hasattr(self, 'worker'):
+            return 'Worker'
+        return None
 
 class Supplier(User):
     company_name= models.CharField(max_length=30)

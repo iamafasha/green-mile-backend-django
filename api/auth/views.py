@@ -28,6 +28,6 @@ class LoginView(GenericAPIView):
 
 class AccountType(APIView):
     permission_classes = (IsAuthenticated,)
+    
     def get(self, request, format=None):
-        print(type(request.user))
-        return Response({'account_type':"supplier"} , status=status.HTTP_202_ACCEPTED )
+        return Response({'account_type': request.user.subclass}, status=status.HTTP_202_ACCEPTED)
