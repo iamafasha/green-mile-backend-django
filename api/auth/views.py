@@ -30,4 +30,14 @@ class AccountType(APIView):
     permission_classes = (IsAuthenticated,)
     
     def get(self, request, format=None):
-        return Response({'account_type': request.user.subclass}, status=status.HTTP_202_ACCEPTED)
+        subclass=request.user.subclass
+        is_is_hub_manager=False
+        if(subclass=='worker'):
+            if(request.user.is_hub_manager):
+                subclass='hubmananger'
+        return Response({
+            'account_type': subclass,
+            'is_staff':request.user.is_staff,
+            'is_admin':request.user.is_superuser,
+            'is_is_hub_manager':is_is_hub_manager,
+        }, status=status.HTTP_202_ACCEPTED)

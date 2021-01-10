@@ -7,15 +7,14 @@ class User(AbstractUser):
     @property
     def subclass(self):
         if hasattr(self, 'supplier'):
-            return 'Supplier'
+            return 'supplier'
         elif hasattr(self, 'worker'):
-            return 'Worker'
-        return None
+            return 'worker'
+        return 'user'
 
 class Supplier(User):
     company_name= models.CharField(max_length=30)
     company_domain=models.CharField(max_length=30)
-        
     class Meta:
         verbose_name = 'supplier'
         verbose_name_plural = 'suppliers'
