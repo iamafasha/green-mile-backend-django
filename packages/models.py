@@ -30,17 +30,17 @@ class PackageSize(models.Model):
 # Create your models here.
 class Package(models.Model):
     TYPE = (
-        ('1', 'Envelope'),
-        ('2', 'Parcel'),
-        ('2', 'Soft'),
-        ('2', 'Freezed'),
+        (1, 'Envelope'),
+        (2, 'Parcel'),
+        (3, 'Soft'),
+        (4, 'Freezed'),
     )
     STATUS = (
-        ('1', 'WITH SUPLIER'),
-        ('2', 'AT GREEN MILE HUB'),
-        ('3', 'REBUNDLING'),
-        ('4', 'ON FLEET'),
-        ('5', 'DELIVERED'),
+        (1, 'WITH SUPLIER'),
+        (2, 'AT GREEN MILE HUB'),
+        (3, 'REBUNDLING'),
+        (4, 'ON FLEET'),
+        (5, 'DELIVERED'),
     )
     name = models.CharField(max_length=30)
     supplier = models.ForeignKey( Supplier , on_delete=models.DO_NOTHING)
