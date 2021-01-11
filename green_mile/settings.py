@@ -29,7 +29,8 @@ JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if DEBUG:
+if (DEBUG == True):
+    print("using lite")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -37,6 +38,7 @@ if DEBUG:
         }
     }
 else:
+    print("using post")
     DATABASES = {
 
         'default': dj_database_url.config(
