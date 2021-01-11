@@ -20,12 +20,7 @@ class Supplier(User):
         verbose_name_plural = 'suppliers'
         
 class Worker(User):
-    ACCOUNT_TYPE = (
-        ('1', 'Admin'),
-        ('2', 'Regular'),
-    )
     is_hub_manager = models.BooleanField(default=False)
-    account_type = models.CharField(max_length=1, choices=ACCOUNT_TYPE)
     class Meta:
         verbose_name = 'worker'
         verbose_name_plural = 'workers'

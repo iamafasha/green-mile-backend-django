@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from rest_framework import status
 import jwt
 from .serializers import UserSerializer
+
+from users.models import Worker , Supplier
 # Create your views here.
 
 
@@ -33,7 +35,8 @@ class AccountType(APIView):
         subclass=request.user.subclass
         is_is_hub_manager=False
         if(subclass=='worker'):
-            if(request.user.is_hub_manager):
+            user = Worker.objects.get(username=request.user.username)
+            if(user.is_hub_manager):
                 subclass='hubmananger'
         return Response({
             'account_type': subclass,
