@@ -29,7 +29,7 @@ urlpatterns = [
     path("auth/account_type", auth_views.AccountType.as_view(), name="user-account-type"),
     path('sandbox', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('supplier', supplier_views.SupplierViewSet.as_view({'post':'create'}), name="create-supplier" ),
-    path('supplier/package', supplier_views.SupplierPackageViewSet.as_view(), name="packages-supplier" ),
+    path('supplier/packages', supplier_views.SupplierPackageViewSet.as_view(), name="packages-supplier" ),
     path('supplier/package/<int:id>', supplier_views.SupplierPackageDetailViewSet.as_view(), name="package-details-supplier" ),
     path('worker/package/<int:id>', worker_views.WorkerPackageDetailViewSet.as_view() , name="package-details-supplier" ),
     path('hubmananger/packages/', hub_mananager_package_views.PackageViewSet.as_view() , name="package-details-supplier" ),
