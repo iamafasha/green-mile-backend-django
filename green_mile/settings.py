@@ -19,7 +19,7 @@ env_path = BASE_DIR / '.env'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-DEBUG = bool(os.getenv('DEBUG'))
+DEBUG = False
 SECRET_KEY =  os.getenv('SECRET_KEY')
 JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
 # SECRET_KEY = '!@$6hs&pn#*vyn)dua2fy@28^c1^^klpj$+-3ey21aaeds669_'
