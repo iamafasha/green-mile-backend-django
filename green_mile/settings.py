@@ -12,6 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ##dotenv settitings 
 
 load_dotenv(verbose=True)
+
+print(BASE_DIR)
 env_path = BASE_DIR / '.env'
 
 # Quick-start development settings - unsuitable for production
@@ -30,22 +32,22 @@ JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 # if (DEBUG == True):
-print("using lite")
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# print("using lite")
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # else:
 # print("using post")
-# DATABASES = {
+DATABASES = {
 
-#     'default': dj_database_url.config(
-#         default = S3Connection(os.environ['DATABASE_URL'], os.environ['DATABASE_URL'])
-#     )
+    'default': dj_database_url.config(
+        default = S3Connection(os.environ['DATABASE_URL'], os.environ['DATABASE_URL'])
+    )
 
-# }
+}
 
 ALLOWED_HOSTS = []
 
@@ -57,7 +59,6 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
