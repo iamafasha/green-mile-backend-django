@@ -31,6 +31,7 @@ urlpatterns = [
     path('supplier/', supplier_views.SupplierViewSet.as_view({'post':'create'}), name="create-supplier" ),
     path('supplier/packages/', supplier_views.SupplierPackageViewSet.as_view(), name="packages-supplier" ),
     path('supplier/package/<int:id>/', supplier_views.SupplierPackageDetailViewSet.as_view(), name="package-details-supplier" ),
+    path('worker/packages/', worker_views.WorkerPackageViewSet.as_view({'get': 'list'}) , name="package-details-supplier" ),
     path('worker/package/<int:id>/', worker_views.WorkerPackageDetailViewSet.as_view() , name="package-details-supplier" ),
     path('hubmananger/packages/', hub_mananager_package_views.PackageViewSet.as_view() , name="package-details-supplier" ),
     path('hubmananger/package/<int:id>/', hub_mananager_package_views.PackageDetailViewSet.as_view() , name="package-details-supplier" ),
