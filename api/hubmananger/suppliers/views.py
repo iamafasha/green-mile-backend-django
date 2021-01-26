@@ -20,3 +20,4 @@ class SupplierDetailViewSet(generics.RetrieveUpdateDestroyAPIView , IsHubManange
     def get_queryset(self):
         return Supplier.objects.all()
     
+class SupplierReceiversViewSet(generics.ListCreateAPIView )
