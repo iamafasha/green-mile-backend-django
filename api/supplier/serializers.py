@@ -6,7 +6,7 @@ from packages.models import Package , ShippingLocation , Shipping , PackageSize
 class SupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
-        fields = ['username','company_name','company_domain', 'email', 'password']
+        fields = ['id','username','company_name','company_domain', 'email', 'password']
 
     def create(self, validated_data):
         password = validated_data.pop('password')
