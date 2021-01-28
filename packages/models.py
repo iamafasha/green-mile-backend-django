@@ -46,7 +46,7 @@ class Package(models.Model):
     supplier = models.ForeignKey( Supplier , on_delete=models.DO_NOTHING)
     to =  models.ForeignKey(Shipping, default=None, on_delete=models.CASCADE )
     size = models.ForeignKey( PackageSize, default=None, on_delete=models.CASCADE )
-    type = models.IntegerField(max_length=1, default=1, choices=TYPE)
-    status = models.IntegerField(max_length=1, default=1, choices=STATUS)
+    type = models.IntegerField(default=1, choices=TYPE)
+    status = models.IntegerField(default=1, choices=STATUS)
     def __str__(self):
         return self.name

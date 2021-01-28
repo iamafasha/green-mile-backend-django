@@ -37,6 +37,7 @@ urlpatterns = [
     path('hubmananger/package/<int:id>/', hub_mananager_package_views.PackageDetailViewSet.as_view() , name="package-details-supplier" ),
     path('hubmananger/suppliers/', hub_mananager_supplier_views.SupplierViewSet.as_view() , name="package-details-supplier" ),
     path('hubmananger/supplier/<int:id>/', hub_mananager_supplier_views.SupplierDetailViewSet.as_view() , name="package-details-supplier" ),
+    path('hubmananger/supplier/<int:id>/receivers', hub_mananager_supplier_views.SupplierReceiversViewSet.as_view() , name="package-details-supplier" ),
     path('hubmananger/workers/', hub_mananager_worker_views.WorkerViewSet.as_view() , name="package-details-supplier" ),
     path('hubmananger/worker/<int:id>/', hub_mananager_worker_views.WorkerDetailViewSet.as_view() , name="package-details-supplier" ),
 ]
