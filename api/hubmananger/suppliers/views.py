@@ -27,5 +27,5 @@ class SupplierReceiversViewSet(generics.ListCreateAPIView , IsHubMananger ):
     permission_classes = ( IsAuthenticated , IsHubMananger )
     
     def get_queryset(self):
-        print(self.kwargs.get('id'))
-        return Shipping.objects.all()
+        supplier = Supplier.objects.get(pk=self.kwargs.get('id'))
+        return Shipping.objects.filter(package__supplier=supplier)
